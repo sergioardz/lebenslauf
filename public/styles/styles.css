@@ -1,3 +1,9 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+#errors {
+  font-size: 6px;
+  font-weight: bold;
+  color: blue;
+}
