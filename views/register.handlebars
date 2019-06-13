@@ -2,19 +2,8 @@
     <div class="col-lg-6">
         <h1>{{title}}</h1>
 
-        <div id="errors">
-        {{#if errors}}
-            {{#each errors}}
-                <div>
-                    {{this.param}}: {{this.msg}}
-                </div>
-            {{/each}}
-        {{/if}}
-        </div>
 
-
-
-        <form class="register-user">
+        <form class="register-user" method="POST" action="/register">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" class="form-control" placeholder="Username">
@@ -34,8 +23,20 @@
             </div>
             <button id="submit" type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <br>
+
+        {{#if errors}}
+            <div id="errors">
+                <b>Please review your submitted information:</b>
+                {{#each errors}}
+                    <div>
+                        <p class="error">{{this.msg}}</p>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+
     </div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/register.js"></script>

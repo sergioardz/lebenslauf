@@ -18,19 +18,27 @@ module.exports = function(sequelize, DataTypes) {
       password: {
         type: DataTypes.STRING
       },
-        passwordMatch: {
-          type: DataTypes.STRING
-        }
+      passwordMatch: {
+        type: DataTypes.STRING
+      }
     },
     {
-        hooks : {
-            beforeCreate : (user , options) => {
-                {
-                    user.password = user.password && user.password != "" ? bcrypt.hashSync(user.password, 10) : "";
-                    user.passwordMatch = user.passwordMatch && user.passwordMatch != "" ? bcrypt.hashSync(user.passwordMatch, 10) : "";
-                }
-            }
+      hooks: {
+        beforeCreate: user => {
+          {
+            user.password =
+              // eslint-disable-next-line eqeqeq
+              user.password && user.password != ""
+                ? bcrypt.hashSync(user.password, 10)
+                : "";
+            user.passwordMatch =
+              // eslint-disable-next-line eqeqeq
+              user.passwordMatch && user.passwordMatch != ""
+                ? bcrypt.hashSync(user.passwordMatch, 10)
+                : "";
+          }
         }
+      }
     }
   );
   return User;

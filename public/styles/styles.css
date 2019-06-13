@@ -3,7 +3,11 @@
 }
 
 #errors {
-  font-size: 6px;
-  font-weight: bold;
-  color: blue;
+  font-size: 12px;
+  border: 1px solid red;
+  padding: 4px;
+}
+
+.error {
+  color: red;
 }
