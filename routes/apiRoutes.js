@@ -51,17 +51,21 @@ module.exports = function(app) {
         errors: errors
       });
     } else {
-      db.User.create(req.body).then(function(dbUser) {
-        console.log(dbUser.dataValues.id);
+      db.User.create(req.body).then(function() {
+        res.redirect("/homepage");
 
-        var userId = dbUser.dataValues.id;
+        // The below code would log-in a user upon registration
 
-        req.login(userId, function(err) {
-          if (err) {
-            throw err;
-          }
-          res.redirect("/login");
-        });
+        // console.log(dbUser.dataValues.id);
+
+        // var userId = dbUser.dataValues.id;
+
+        // req.login(userId, function(err) {
+        //   if (err) {
+        //     throw err;
+        //   }
+        //   res.redirect("/login");
+        // });
       });
     }
   });

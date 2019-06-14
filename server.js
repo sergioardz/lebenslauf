@@ -73,21 +73,22 @@ passport.use(
       }
     }).then(function(dbUser) {
       // console.log(dbUser);
-      if (dbUser === undefined) {
-        // console.log("Username not found");
+      if (dbUser === undefined || dbUser.length === 0) {
+        console.log("Username not found");
         done(null, false);
+      } else {
+        var hash = dbUser[0].dataValues.password;
+        var id = dbUser[0].dataValues.id;
+        bcrypt.compare(password, hash, function(err, response) {
+          if (response === true) {
+            console.log("Successfully Logged-in");
+            return done(null, id);
+          } else {
+            console.log("Password does not match.");
+            return done(null, false);
+          }
+        });
       }
-      var hash = dbUser[0].dataValues.password;
-      var id = dbUser[0].dataValues.id;
-      bcrypt.compare(password, hash, function(err, response) {
-        if (response === true) {
-          console.log("Successfully Logged-in");
-          return done(null, id);
-        } else {
-          console.log("Password does not match.");
-          return done(null, false);
-        }
-      });
     });
   })
 );
