@@ -36,9 +36,9 @@ module.exports = function(app) {
       },
       include: [db.General]
     }).then(function(results) {
-      // console.log(results[0].dataValues);
+      console.log(results);
       // eslint-disable-next-line camelcase
-      res.render("profile", { data: results[0].dataValues });
+      res.render("profile", { data: results });
     });
   });
 

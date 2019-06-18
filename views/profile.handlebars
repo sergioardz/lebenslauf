@@ -6,24 +6,28 @@
 
     {{!-- <p>User Id: {{user_id}}</p> --}}
 
+    
     <div class="row">
         <div class="col-sm-9">
+            {{#each data}}
             <div class="card">
                 <div class="card-header">
                     <h4><strong>General Information</strong></h4>
                 </div>
                 <div class="card-body">
-                    <h4 id="cardname">{{data.General.name}}</h4>
+                    <h4 id="cardname">{{dataValues.General.name}}</h4>
                     <div id="stats">
-                        <h6><strong>Email: </strong><span id="cardemail">{{data.email}}</span></h6>
-                        <h6><strong>Address: </strong><br><span id="cardaddress">{{data.General.address1}}<br>
-                            {{data.General.address2}}<br>
-                            {{data.General.city}}, {{data.General.state}}<br>
-                            {{data.General.zip}}</span></h6>
-                        <h6><strong>Phone: </strong><span id="cardphone">{{data.General.phone}}</span></h6>
+                        <h6><strong>Email: </strong><span id="cardemail">{{email}}</span></h6>
+                        <h6><strong>Address: </strong><br><span id="cardaddress">{{dataValues.General.address1}}<br>
+                            {{dataValues.General.address2}}<br>
+                            {{dataValues.General.city}}, {{dataValues.General.state}}<br>
+                            {{dataValues.General.zip}}</span></h6>
+                        <h6><strong>Phone: </strong><span id="cardphone">{{dataValues.General.phone}}</span></h6>
                     </div>
                 </div>
             </div>
+            <br>
+            {{/each}}
         </div>
     </div>
 
