@@ -41,5 +41,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   );
+  User.associate = function(models) {
+    // Associating User with General Information
+    User.hasOne(models.General);
+  };
   return User;
 };

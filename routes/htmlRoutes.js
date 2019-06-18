@@ -1,3 +1,6 @@
+var db = require("../models");
+// var passport = require("passport");
+
 module.exports = function(app) {
   // Load Home page
   app.get("/", function(req, res) {
@@ -27,7 +30,16 @@ module.exports = function(app) {
   });
 
   app.get("/profile", authenticationMiddleware(), function(req, res) {
-    res.render("profile");
+    db.User.findAll({
+      where: {
+        id: req.session.passport.user
+      },
+      include: [db.General]
+    }).then(function(results) {
+      // console.log(results[0].dataValues);
+      // eslint-disable-next-line camelcase
+      res.render("profile", { data: results[0].dataValues });
+    });
   });
 
   // Render 404 page for any unmatched routes
@@ -42,6 +54,7 @@ function authenticationMiddleware() {
       "req.session.passport.user: " + JSON.stringify(req.session.passport)
     );
     if (req.isAuthenticated()) {
+      // console.log(res);
       return next();
     }
     res.redirect("/login");
